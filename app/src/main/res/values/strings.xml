@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">JsonRead</string>
     <string name="Loading">Loading</string>
+    <string name="PostOnDataBase">Post</string>
 </resources>
