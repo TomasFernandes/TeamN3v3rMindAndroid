@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView txt;
     private Button bnt;
     private ArrayList<String> streamArray;
+    JSONObject stream;
+    JSONObject Channel;
+    String Display_Name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,19 +63,22 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObj = new JSONObject(jsonStr);
 
-                    // Getting JSON Array node
                     JSONArray contacts = jsonObj.getJSONArray("streams");
 
-                    // looping through All Contacts
                     for (int i = 0; i < contacts.length(); i++) {
                         JSONObject c = contacts.getJSONObject(i);
-
-                        String nome = c.getString("stream");
-                        Log.w("Info","Json:"+ nome);
-                        streamArray.add(nome);
-
+                        String stream_private = c.getString("stream");
+                        if(stream_private != "null")
+                        {
+                            Channel = stream.getJSONObject("channel");
+                            Display_Name = Channel.getString("display_name");
+                            Log.w("Info","Json:"+ stream);
+                            streamArray.add(Display_Name);
+                        }
                     }
-                } catch (final JSONException e) {
+
+                }
+                catch (final JSONException e) {
 
                     runOnUiThread(new Runnable() {
                         @Override
