@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>MainActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(106,135,89); }
+.s3 { color: rgb(128,128,128); }
+.s4 { color: rgb(104,151,187); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+MainActivity.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">com.example.tomas1207portable.jsonread</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">import </span><span class="s1">android.os.AsyncTask</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.support.v7.app.AppCompatActivity</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.os.Bundle</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.util.Log</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">android.widget.Toast</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">import </span><span class="s1">org.json.JSONArray</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.json.JSONException</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.json.JSONObject</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">MainActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity { 
+ 
+    @Override 
+    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState)</span><span class="s0">;</span><span class="s1"> 
+        setContentView(R.layout.activity_main)</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">private class </span><span class="s1">GetContacts </span><span class="s0">extends </span><span class="s1">AsyncTask&lt;Void</span><span class="s0">, </span><span class="s1">Void</span><span class="s0">, </span><span class="s1">Void&gt; { 
+        @Override 
+        </span><span class="s0">protected void </span><span class="s1">onPreExecute() { 
+            </span><span class="s0">super</span><span class="s1">.onPreExecute()</span><span class="s0">;</span><span class="s1"> 
+            Toast.makeText(MainActivity.</span><span class="s0">this,</span><span class="s2">&quot;Json Data is downloading&quot;</span><span class="s0">,</span><span class="s1">Toast.LENGTH_LONG).show()</span><span class="s0">;</span><span class="s1"> 
+ 
+        } 
+ 
+        @Override 
+        </span><span class="s0">protected </span><span class="s1">Void doInBackground(Void... arg0) { 
+            HttpHandler sh = </span><span class="s0">new </span><span class="s1">HttpHandler()</span><span class="s0">;</span><span class="s1"> 
+            </span><span class="s3">// Making a request to url and getting response</span><span class="s1"> 
+            String url = </span><span class="s2">&quot;http://tomasfernandes.pt/Beta/Streams.php&quot;</span><span class="s0">;</span><span class="s1"> 
+            String jsonStr = sh.makeServiceCall(url)</span><span class="s0">;</span><span class="s1"> 
+ 
+ 
+            </span><span class="s0">if </span><span class="s1">(jsonStr != </span><span class="s0">null</span><span class="s1">) { 
+                </span><span class="s0">try </span><span class="s1">{ 
+                    JSONObject jsonObj = </span><span class="s0">new </span><span class="s1">JSONObject(jsonStr)</span><span class="s0">;</span><span class="s1"> 
+ 
+                    </span><span class="s3">// Getting JSON Array node</span><span class="s1"> 
+                    JSONArray contacts = jsonObj.getJSONArray(</span><span class="s2">&quot;contacts&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+                    </span><span class="s3">// looping through All Contacts</span><span class="s1"> 
+                    </span><span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s0">; </span><span class="s1">i &lt; contacts.length()</span><span class="s0">; </span><span class="s1">i++) { 
+                        JSONObject c = contacts.getJSONObject(i)</span><span class="s0">;</span><span class="s1"> 
+ 
+                    } 
+                } </span><span class="s0">catch </span><span class="s1">(</span><span class="s0">final </span><span class="s1">JSONException e) { 
+ 
+                    runOnUiThread(</span><span class="s0">new </span><span class="s1">Runnable() { 
+                        @Override 
+                        </span><span class="s0">public void </span><span class="s1">run() { 
+                            Toast.makeText(getApplicationContext()</span><span class="s0">,</span><span class="s1"> 
+                                    </span><span class="s2">&quot;Json parsing error: &quot; </span><span class="s1">+ e.getMessage()</span><span class="s0">,</span><span class="s1"> 
+                                    Toast.LENGTH_LONG).show()</span><span class="s0">;</span><span class="s1"> 
+                        } 
+                    })</span><span class="s0">;</span><span class="s1"> 
+ 
+                } 
+ 
+            } </span><span class="s0">else </span><span class="s1">{ 
+                runOnUiThread(</span><span class="s0">new </span><span class="s1">Runnable() { 
+                    @Override 
+                    </span><span class="s0">public void </span><span class="s1">run() { 
+                        Toast.makeText(getApplicationContext()</span><span class="s0">,</span><span class="s1"> 
+                                </span><span class="s2">&quot;Couldn't get json from server. Check LogCat for possible errors!&quot;</span><span class="s0">,</span><span class="s1"> 
+                                Toast.LENGTH_LONG).show()</span><span class="s0">;</span><span class="s1"> 
+                    } 
+                })</span><span class="s0">;</span><span class="s1"> 
+            } 
+ 
+            </span><span class="s0">return null;</span><span class="s1"> 
+        } 
+ 
+        @Override 
+        </span><span class="s0">protected void </span><span class="s1">onPostExecute(Void result) { 
+            </span><span class="s0">super</span><span class="s1">.onPostExecute(result)</span><span class="s0">;</span><span class="s1"> 
+ 
+        } 
+    } 
+} 
+</span></pre>
+</body>
+</html>
