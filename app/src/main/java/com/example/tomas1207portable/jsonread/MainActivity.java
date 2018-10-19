@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                         String stream_private = c.getString("stream");
                         if(stream_private != "null")
                         {
+                            JSONObject stream = c.getJSONObject("stream");
                             Channel = stream.getJSONObject("channel");
                             Display_Name = Channel.getString("display_name");
                             Log.w("Info","Json:"+ stream);
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }
-                catch (final JSONException e) {
+                    catch (final JSONException e) {
 
                     runOnUiThread(new Runnable() {
                         @Override
