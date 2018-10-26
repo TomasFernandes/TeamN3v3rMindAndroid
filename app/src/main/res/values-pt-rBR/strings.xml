@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">JsonRead</string>
+    <string name="app_name">TeamN3v3rMind</string>
     <string name="Loading">Carregar</string>
+    <string name="Post">Post</string>
+    <string name="download">Download</string>
+    <string name="DataBase">Base de dados</string>
 </resources>

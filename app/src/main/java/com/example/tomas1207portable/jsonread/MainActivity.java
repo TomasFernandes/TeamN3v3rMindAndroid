@@ -1,5 +1,6 @@
 package com.example.tomas1207portable.jsonread;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView txt;
     private Button bnt;
     private ArrayList<String> streamArray;
-    JSONObject stream;
-    JSONObject Channel;
-    String Display_Name;
+    private JSONObject Channel;
+    private Button move;
+    private String Display_Name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
         txt = findViewById(R.id.Login_MainScreen);
         bnt = findViewById(R.id.PostOnData);
         streamArray = new ArrayList<>();
+        move = findViewById(R.id.Move);
+        move.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+          startActivity(new Intent(MainActivity.this, DataBaseController.class));
+
+            }
+        });
         new GetContacts().execute();
         bnt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+    
     private class GetContacts extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
