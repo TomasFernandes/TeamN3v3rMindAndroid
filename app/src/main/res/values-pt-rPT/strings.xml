@@ -5,5 +5,6 @@
     <string name="Post">Post</string>
     <string name="download">Descaregar</string>
     <string name="DataBase">Base de dados</string>
+    <string name="PostOnDataBase">Post</string>
 
 </resources>
