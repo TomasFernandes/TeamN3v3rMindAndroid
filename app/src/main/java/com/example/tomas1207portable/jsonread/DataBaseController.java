@@ -37,8 +37,9 @@ public class DataBaseController extends AppCompatActivity {
 
             }
         });
+        editor.commit();
     }
-    public  class DataBaseTester extends AsyncTask<Void, Void, Void> {
+    public class DataBaseTester extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {

@@ -1,6 +1,7 @@
 package com.example.tomas1207portable.jsonread;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -19,16 +20,19 @@ public class Nav extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
+        final SharedPreferences sharedPreferences=getSharedPreferences("JsonShared",MODE_PRIVATE);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        AsycnCall();
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+
+                Snackbar.make(view, sharedPreferences.getString("DisplayName","Sao todos uns preguiçosos"), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -73,6 +77,9 @@ public class Nav extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    private void AsycnCall(){
+        new GetContactsMain(this).execute();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

@@ -1,5 +1,6 @@
 package com.example.tomas1207portable.jsonread;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, DataBaseController.class));
             }
         });
-        new GetContacts().execute();
+        new GetContacts(this).execute();
         bnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,26 +63,24 @@ public class MainActivity extends AppCompatActivity {
         });
         editor.commit();
     }
-
-
-
-    
-    private class GetContacts extends AsyncTask<Void, Void, Void> {
+//TODO:Edit Fazer o remove desta class e por pelo GetContactsMain para aqui com sharedPref
+    public class GetContacts extends AsyncTask<Void, Void, Void> {
+        private Context context;
+        public GetContacts(Context context){
+            this.context = context;
+        }
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             Toast.makeText(MainActivity.this,"Json Data is downloading",Toast.LENGTH_LONG).show();
 
         }
-
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
             // Making a request to url and getting response
             String url = "http://tomasfernandes.pt/Beta/Streams.php";
             String jsonStr = sh.makeServiceCall(url);
-
-
             if (jsonStr != null) {
                 try {
                     JSONObject jsonObj = new JSONObject(jsonStr);
@@ -117,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
                     });
 
                 }
-
             } else {
                 runOnUiThread(new Runnable() {
                     @Override
@@ -129,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
-
             return null;
         }
 

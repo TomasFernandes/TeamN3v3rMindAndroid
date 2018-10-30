@@ -1,0 +1,74 @@
+package com.example.tomas1207portable.jsonread;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+
+ public class GetContactsMain extends AsyncTask<Void, Void, Void> {
+    private JSONObject Channel;
+    private Context context;
+    private ArrayList<String> streamArray;
+    private SharedPreferences.Editor editor;
+    private String Display_Name;
+
+    public GetContactsMain(Context context) {
+        this.context = context;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        Toast.makeText(context, "Json Data is downloading", Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    protected Void doInBackground(Void... arg0) {
+        HttpHandler sh = new HttpHandler();
+        // Making a request to url and getting response
+        String url = "http://tomasfernandes.pt/Beta/Streams.php";
+        String jsonStr = sh.makeServiceCall(url);
+        if (jsonStr != null) {
+            try {
+                JSONObject jsonObj = new JSONObject(jsonStr);
+
+                JSONArray contacts = jsonObj.getJSONArray("streams");
+
+                for (int i = 0; i < contacts.length(); i++) {
+                    JSONObject c = contacts.getJSONObject(i);
+                    String stream_private = c.getString("stream");
+                    if (stream_private.equals("null")) {
+                        JSONObject stream = c.getJSONObject("stream");
+                        Channel = stream.getJSONObject("channel");
+                        Display_Name = Channel.getString("display_name");
+                        Log.w("Info", "Json:" + stream);
+                        streamArray.add(Display_Name);
+                        editor.putString("DisplayName", Display_Name);
+                        editor.putString("InLive", streamArray.toString());
+                        editor.commit();
+                    }
+                }
+
+            } catch (final JSONException e) {
+                Log.d("Json",e.getMessage());
+            }
+        }
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void result) {
+        super.onPostExecute(result);
+
+
+    }
+}
