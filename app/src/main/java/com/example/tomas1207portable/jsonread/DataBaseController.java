@@ -1,5 +1,6 @@
 package com.example.tomas1207portable.jsonread;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +12,9 @@ import android.widget.Toast;
 public class DataBaseController extends AppCompatActivity {
     private Button bnt_dataBaseTest;
     private TextView tv_dataBaseTest;
-    private DataBaseTester dataBaseTester;
+    private String nomeShared = "JsonShared";
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     private Boolean haveData = true;
 
     @Override
@@ -20,6 +23,8 @@ public class DataBaseController extends AppCompatActivity {
         setContentView(R.layout.activity_data_base_controller);
         bnt_dataBaseTest=findViewById(R.id.Download_test);
         tv_dataBaseTest=findViewById(R.id.DataBase_test);
+        editor = getSharedPreferences(nomeShared,MODE_PRIVATE).edit();
+
         new DataBaseTester().execute();
 
         bnt_dataBaseTest.setOnClickListener(new View.OnClickListener() {
@@ -33,7 +38,7 @@ public class DataBaseController extends AppCompatActivity {
             }
         });
     }
-    public class DataBaseTester extends AsyncTask<Void, Void, Void> {
+    public  class DataBaseTester extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
@@ -60,9 +65,12 @@ public class DataBaseController extends AppCompatActivity {
             String jsonStr = sh.makeServiceCall(url);
             if(jsonStr == null){
                 haveData = false;
-            }else{
-
+                editor.putBoolean("DataFromServer",haveData);
+            }else {
+                haveData = true;
+                editor.putBoolean("DataFromServer",haveData);
             }
+            editor.commit();
             return null;
         }
     }

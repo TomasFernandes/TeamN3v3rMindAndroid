@@ -1,6 +1,7 @@
 package com.example.tomas1207portable.jsonread;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,21 +28,29 @@ public class MainActivity extends AppCompatActivity {
     private Button bnt;
     private ArrayList<String> streamArray;
     private JSONObject Channel;
+    private String nomeShared = "JsonShared";
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
     private Button move;
     private String Display_Name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPreferences = getSharedPreferences(nomeShared,MODE_PRIVATE);
+        editor = getSharedPreferences(nomeShared,MODE_PRIVATE).edit();
+
         txt = findViewById(R.id.Login_MainScreen);
         bnt = findViewById(R.id.PostOnData);
-        streamArray = new ArrayList<>();
         move = findViewById(R.id.Move);
+
+        streamArray = new ArrayList<>();
+
         move.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-          startActivity(new Intent(MainActivity.this, DataBaseController.class));
-
+                startActivity(new Intent(MainActivity.this, DataBaseController.class));
             }
         });
         new GetContacts().execute();
@@ -51,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 new postOnServer().execute();
             }
         });
+        editor.commit();
     }
 
 
@@ -81,13 +91,16 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < contacts.length(); i++) {
                         JSONObject c = contacts.getJSONObject(i);
                         String stream_private = c.getString("stream");
-                        if(stream_private != "null")
+                        if(stream_private.equals("null" ))
                         {
                             JSONObject stream = c.getJSONObject("stream");
                             Channel = stream.getJSONObject("channel");
                             Display_Name = Channel.getString("display_name");
                             Log.w("Info","Json:"+ stream);
                             streamArray.add(Display_Name);
+                            editor.putString("DisplayName",Display_Name);
+                            editor.putString("InLive",streamArray.toString());
+                            editor.commit();
                         }
                     }
 
@@ -127,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-    private class postOnServer extends AsyncTask<Void, Void, Void>{
+    private static class postOnServer extends AsyncTask<Void, Void, Void>{
 
         @Override
         protected void onPreExecute() {
@@ -142,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            URL url = null;
+            URL url;
             try
             {
                 url = new URL("http://www.tomasfernandes.pt/Rest/example/addalunos");
