@@ -60,6 +60,8 @@ public class DataBaseController extends AppCompatActivity {
             String jsonStr = sh.makeServiceCall(url);
             if(jsonStr == null){
                 haveData = false;
+            }else{
+
             }
             return null;
         }
