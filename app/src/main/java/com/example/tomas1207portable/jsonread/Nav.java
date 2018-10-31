@@ -17,21 +17,24 @@ import android.view.View;
 
 public class Nav extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
-        final SharedPreferences sharedPreferences=getSharedPreferences("JsonShared",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("JsonShared",MODE_PRIVATE);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        deleteAllShared();
+
         MakeCall();
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Snackbar.make(view, sharedPreferences.getString("InLive","Sao todos uns preguiçosos"), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -105,5 +108,12 @@ public class Nav extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    //TODO:Maybey Create a  sharedController.class
+    private void deleteAllShared(){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("DisplayName");
+        editor.remove("InLive");
+        editor.apply();
     }
 }

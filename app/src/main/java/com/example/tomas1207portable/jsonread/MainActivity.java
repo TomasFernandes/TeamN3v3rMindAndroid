@@ -9,26 +9,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.json.JSONObject;
-
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private TextView txt;
     private Button bnt;
-    private ArrayList<String> streamArray;
-    private JSONObject Channel;
     private String nomeShared = "JsonShared";
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private Button move;
-    private String Display_Name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
         txt = findViewById(R.id.Login_MainScreen);
         bnt = findViewById(R.id.PostOnData);
         move = findViewById(R.id.Move);
-
-        streamArray = new ArrayList<>();
 
         move.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         });
         editor.commit();
     }
-//TODO:Edit Fazer o remove desta class e por pelo GetContactsMain para aqui com sharedPref
+//TODO:Edit Fazer o Post de dados para a base de dados :P
     private static class postOnServer extends AsyncTask<Void, Void, Void>{
 
         @Override

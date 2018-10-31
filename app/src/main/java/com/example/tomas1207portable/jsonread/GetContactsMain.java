@@ -63,6 +63,9 @@ public class GetContactsMain extends AsyncTask<Void, Void, Void> {
                         editor.putString("InLive", streamArray.toString());
                         editor.putBoolean("DataFromServer",HaveData);
                         editor.commit();
+                    }else {
+                        editor.remove("DisplayName");
+                        editor.remove("InLive");
                     }
                 }
 
