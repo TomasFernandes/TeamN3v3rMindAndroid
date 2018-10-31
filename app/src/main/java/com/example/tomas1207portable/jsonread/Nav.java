@@ -26,13 +26,13 @@ public class Nav extends AppCompatActivity
         final SharedPreferences sharedPreferences=getSharedPreferences("JsonShared",MODE_PRIVATE);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        AsycnCall();
+        MakeCall();
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Snackbar.make(view, sharedPreferences.getString("DisplayName","Sao todos uns preguiçosos"), Snackbar.LENGTH_LONG)
+                Snackbar.make(view, sharedPreferences.getString("InLive","Sao todos uns preguiçosos"), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -78,7 +78,7 @@ public class Nav extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
-    private void AsycnCall(){
+    private void MakeCall(){
         new GetContactsMain(this).execute();
     }
 
@@ -87,7 +87,7 @@ public class Nav extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+//TODO:Change Mudar os nomes dos ids :P
         if (id == R.id.nav_camera) {
             startActivity(new Intent(Nav.this, MainActivity.class));
         } else if (id == R.id.nav_gallery) {

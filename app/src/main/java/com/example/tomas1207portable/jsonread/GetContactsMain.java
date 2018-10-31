@@ -13,13 +13,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
- public class GetContactsMain extends AsyncTask<Void, Void, Void> {
+
+public class GetContactsMain extends AsyncTask<Void, Void, Void> {
     private JSONObject Channel;
     private Context context;
-    private ArrayList<String> streamArray;
-    private SharedPreferences.Editor editor;
+    private ArrayList<String> streamArray = new ArrayList<String>();
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor ;
     private String Display_Name;
-
+    private Boolean HaveData = false;
     public GetContactsMain(Context context) {
         this.context = context;
     }
@@ -33,10 +35,14 @@ import java.util.ArrayList;
 
     @Override
     protected Void doInBackground(Void... arg0) {
+       sharedPreferences = context.getSharedPreferences("JsonShared",Context.MODE_PRIVATE);
+       editor = sharedPreferences.edit();
         HttpHandler sh = new HttpHandler();
         // Making a request to url and getting response
         String url = "http://tomasfernandes.pt/Beta/Streams.php";
         String jsonStr = sh.makeServiceCall(url);
+        if(HaveData != null){
+            HaveData = true;
         if (jsonStr != null) {
             try {
                 JSONObject jsonObj = new JSONObject(jsonStr);
@@ -46,14 +52,16 @@ import java.util.ArrayList;
                 for (int i = 0; i < contacts.length(); i++) {
                     JSONObject c = contacts.getJSONObject(i);
                     String stream_private = c.getString("stream");
-                    if (stream_private.equals("null")) {
+                    if (stream_private != "null") {
                         JSONObject stream = c.getJSONObject("stream");
                         Channel = stream.getJSONObject("channel");
                         Display_Name = Channel.getString("display_name");
-                        Log.w("Info", "Json:" + stream);
+                        Log.d("Json", "Json:" + stream);
                         streamArray.add(Display_Name);
+
                         editor.putString("DisplayName", Display_Name);
                         editor.putString("InLive", streamArray.toString());
+                        editor.putBoolean("DataFromServer",HaveData);
                         editor.commit();
                     }
                 }
@@ -62,12 +70,16 @@ import java.util.ArrayList;
                 Log.d("Json",e.getMessage());
             }
         }
+        }else  {
+            HaveData = false;
+        }
         return null;
     }
 
     @Override
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
+        Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show();
 
 
     }

@@ -1,7 +1,6 @@
 package com.example.tomas1207portable.jsonread;
 
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,7 +14,6 @@ public class DataBaseController extends AppCompatActivity {
     private String nomeShared = "JsonShared";
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-    private Boolean haveData = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,54 +23,18 @@ public class DataBaseController extends AppCompatActivity {
         tv_dataBaseTest=findViewById(R.id.DataBase_test);
         editor = getSharedPreferences(nomeShared,MODE_PRIVATE).edit();
 
-        new DataBaseTester().execute();
+        new GetContactsMain(this).execute();
 
         bnt_dataBaseTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-            if(haveData){
-                Toast.makeText(DataBaseController.this, "Have data", Toast.LENGTH_SHORT).show();
-            }
+                Toast.makeText(DataBaseController.this,""+ sharedPreferences.getBoolean("DataFromServer",false), Toast.LENGTH_SHORT).show();
+
 
             }
         });
         editor.commit();
     }
-    public class DataBaseTester extends AsyncTask<Void, Void, Void> {
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-
-
-        }
-
-        @Override
-        protected void onCancelled() {
-            haveData = false;
-            super.onCancelled();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            HttpHandler sh = new HttpHandler();
-            String url = "http://tomasfernandes.pt/Beta/Streams.php";
-            String jsonStr = sh.makeServiceCall(url);
-            if(jsonStr == null){
-                haveData = false;
-                editor.putBoolean("DataFromServer",haveData);
-            }else {
-                haveData = true;
-                editor.putBoolean("DataFromServer",haveData);
-            }
-            editor.commit();
-            return null;
-        }
-    }
 }
