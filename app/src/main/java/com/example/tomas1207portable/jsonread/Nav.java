@@ -11,9 +11,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.util.Random;
 
 public class Nav extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,7 +33,13 @@ public class Nav extends AppCompatActivity
         deleteAllShared();
 
         MakeCall();
-
+        Item item = new Item("Black Stone","Imagem",500,5000,"Verde","E uma pedra");
+        Item item1 = new Item("Mesa","Imagem",8000,500000,"Lendario","E uma Mesa");
+        item.rightClick();
+        item1.rightClick();
+        Random random = new Random();
+        Log.d("BDO", String.valueOf(item.callPreço(random.nextInt(10)+1)));
+        Log.d("BDO",String.valueOf(item1.callPreço(9)));
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
