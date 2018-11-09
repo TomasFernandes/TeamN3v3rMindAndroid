@@ -23,20 +23,19 @@ public class Nav extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
-        sharedPreferences = getSharedPreferences("JsonShared",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("JsonShared",MODE_PRIVATE);//shared init
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        deleteAllShared();
-
-        MakeCall();
+        deleteAllShared();//delete all shared if existed
+        MakeCall();// call the server
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, sharedPreferences.getString("InLive","Sao todos uns preguiçosos"), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                        .setAction("Action", null).show();//show bar in both of phone with info from API but need pass from sharedpreference Name:JsonRead key:inLive nomes dos streams
             }
         });
 
@@ -82,7 +81,7 @@ public class Nav extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
     private void MakeCall(){
-        new GetContactsMain(this).execute();
+        new GetContactsMain(this).execute();//call class to get API context
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -90,7 +89,7 @@ public class Nav extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-//TODO:Change Mudar os nomes dos ids :P
+            //TODO:Change Mudar os nomes dos ids :P
         if (id == R.id.nav_camera) {
             startActivity(new Intent(Nav.this, MainActivity.class));
         } else if (id == R.id.nav_gallery) {
@@ -110,6 +109,12 @@ public class Nav extends AppCompatActivity
         return true;
     }
     //TODO:Maybey Create a  sharedController.class
+
+
+    /**
+     * delete all shared preferences from app,
+     * @return null;
+     */
     private void deleteAllShared(){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove("DisplayName");

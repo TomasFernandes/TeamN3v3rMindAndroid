@@ -29,8 +29,6 @@ public class DataBaseController extends AppCompatActivity {
             public void onClick(View view) {
 
                 Toast.makeText(DataBaseController.this,""+ sharedPreferences.getBoolean("DataFromServer",false), Toast.LENGTH_SHORT).show();
-
-
             }
         });
         editor.apply();

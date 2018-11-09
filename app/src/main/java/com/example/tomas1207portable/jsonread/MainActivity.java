@@ -23,12 +23,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView txt;
     private Button bnt;
     private ArrayList<String> streamArray;
-    private JSONObject Channel;
     private String nomeShared = "JsonShared";
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private Button move;
-    private String Display_Name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         bnt = findViewById(R.id.PostOnData);
         move = findViewById(R.id.Move);
 
-        streamArray = new ArrayList<>();
+        streamArray = new ArrayList<>();//Array streams online
 
         move.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,8 +55,11 @@ public class MainActivity extends AppCompatActivity {
                 new postOnServer().execute();
             }
         });
-        editor.commit();
+        editor.apply();
     }
+
+
+
 //TODO:Edit Fazer o remove desta class e por pelo GetContactsMain para aqui com sharedPref
     private static class postOnServer extends AsyncTask<Void, Void, Void>{
 
@@ -79,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
             try
             {
                 url = new URL("http://www.tomasfernandes.pt/Rest/example/addalunos");
-
                 HttpURLConnection connection = (HttpURLConnection)url.openConnection();
                 String urlParams = "nome=tomas&idade=25&turma=407&curso=DDM";
                 connection.setRequestMethod("POST");
