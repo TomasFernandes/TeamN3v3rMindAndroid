@@ -34,7 +34,7 @@ public class DataBaseController extends AppCompatActivity {
 
             }
         });
-        editor.commit();
+        editor.apply();
     }
 
 }
