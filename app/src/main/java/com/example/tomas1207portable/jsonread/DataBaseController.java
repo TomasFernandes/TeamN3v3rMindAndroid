@@ -22,7 +22,6 @@ public class DataBaseController extends AppCompatActivity {
         bnt_dataBaseTest=findViewById(R.id.Download_test);
         tv_dataBaseTest=findViewById(R.id.DataBase_test);
         editor = getSharedPreferences(nomeShared,MODE_PRIVATE).edit();
-
         new GetContactsMain(this).execute();
 
         bnt_dataBaseTest.setOnClickListener(new View.OnClickListener() {
