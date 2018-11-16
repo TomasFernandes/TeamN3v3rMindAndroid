@@ -21,7 +21,6 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="Tools" />
     </group>
-
     <item android:title="Communicate">
         <menu>
             <item
