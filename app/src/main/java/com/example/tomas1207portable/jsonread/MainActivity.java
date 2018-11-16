@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         new GetContactsMain(this).execute();
+        int sou;
         sharedPreferences = getSharedPreferences(nomeShared,MODE_PRIVATE);
         editor = getSharedPreferences(nomeShared,MODE_PRIVATE).edit();
 
