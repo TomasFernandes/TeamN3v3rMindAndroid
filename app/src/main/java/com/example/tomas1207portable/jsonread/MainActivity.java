@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -30,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         new GetContactsMain(this).execute();
+        int sou;
         sharedPreferences = getSharedPreferences(nomeShared,MODE_PRIVATE);
         editor = getSharedPreferences(nomeShared,MODE_PRIVATE).edit();
 
@@ -57,15 +57,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //TODO:ADD NewsLater
-    //TODO:ADD LawOfFame
-    //TODO:ADD Feed, streams add, marcos de canal
-    //TODO:ADD Sobre a team,
-    //TODO:ADD Registo para  a team
-    //TODO:CHANGE orginal DataBase to new,
 
-
-    //TODO:Edit Fazer o remove desta class e por pelo GetContactsMain para aqui com sharedPref
+//TODO:Edit Fazer o remove desta class e por pelo GetContactsMain para aqui com sharedPref
     private static class postOnServer extends AsyncTask<Void, Void, Void>{
 
         @Override
