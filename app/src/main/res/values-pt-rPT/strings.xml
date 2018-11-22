@@ -15,5 +15,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_nav">Nav</string>
     <string name="Streams">Streams</string>
+    <string name="btn_Registar">Registar</string>
 
 </resources>
