@@ -18,19 +18,25 @@ import android.view.View;
 public class Nav extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
         sharedPreferences = getSharedPreferences("JsonShared",MODE_PRIVATE);//shared init
-
+        editor = sharedPreferences.edit();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         deleteAllShared();//delete all shared if existed
         MakeCall();// call the server
+        if(sharedPreferences.getBoolean("FristTime",true) != false){
+        editor.putBoolean("FristTime",true);
+        startActivity(new Intent(this, Weclome.class));
+        }
 
         FloatingActionButton fab = findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
