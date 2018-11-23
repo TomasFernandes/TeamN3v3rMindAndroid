@@ -16,7 +16,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class Teste extends AppCompatActivity { //streamers
     private TextView txt;
     private Button bnt;
     private ArrayList<String> streamArray;
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         move.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, DataBaseController.class));
+                startActivity(new Intent(Teste.this, DataBaseController.class));
             }
         });
 

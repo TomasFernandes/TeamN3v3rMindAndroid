@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class Nav extends AppCompatActivity
+public class Nav extends AppCompatActivity //principal
         implements NavigationView.OnNavigationItemSelectedListener {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -30,9 +30,9 @@ public class Nav extends AppCompatActivity
         setSupportActionBar(toolbar);
         deleteAllShared();//delete all shared if existed
         MakeCall();// call the server
-        if(sharedPreferences.getBoolean("FristTime",true) != false){
-        editor.putBoolean("FristTime",true);
-        startActivity(new Intent(this, Weclome.class));
+        if(sharedPreferences.getBoolean("FirstTime",true) != false){
+        editor.putBoolean("FirstTime",true);
+        startActivity(new Intent(this, Welcome.class));
         }
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -97,7 +97,7 @@ public class Nav extends AppCompatActivity
         int id = item.getItemId();
             //TODO:Change Mudar os nomes dos ids :P
         if (id == R.id.nav_camera) {
-            startActivity(new Intent(Nav.this, MainActivity.class));
+            startActivity(new Intent(Nav.this, Teste.class));
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
