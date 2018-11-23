@@ -30,8 +30,9 @@ public class Nav extends AppCompatActivity //principal
         setSupportActionBar(toolbar);
         deleteAllShared();//delete all shared if existed
         MakeCall();// call the server
-        if(sharedPreferences.getBoolean("FirstTime",true) != false){
-        editor.putBoolean("FirstTime",true);
+       if(sharedPreferences.getBoolean("FirstTime",true) != false){
+        editor.putBoolean("FirstTime",false);
+        editor.apply();
         startActivity(new Intent(this, Welcome.class));
         }
 
