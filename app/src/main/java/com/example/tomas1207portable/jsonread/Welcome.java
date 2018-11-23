@@ -14,7 +14,9 @@ public class Welcome extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("JsonRead",MODE_PRIVATE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weclome);
-        sharedPreferences.getBoolean("FirstTime",false);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("FirstTime",false);
+
         registar = findViewById(R.id.Btn_Register);
         registar.setOnClickListener(new View.OnClickListener() {
             @Override
