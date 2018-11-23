@@ -11,7 +11,7 @@ public class Welcome extends AppCompatActivity {
  private Button registar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences sharedPreferences = getSharedPreferences("JsonRead",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("JsonShared",MODE_PRIVATE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weclome);
         SharedPreferences.Editor editor = sharedPreferences.edit();
