@@ -16,4 +16,6 @@
     <string name="title_activity_nav">Nav</string>
     <string name="Streams">Streams</string>
     <string name="btn_Registar">Registar</string>
+    <string name="Feed">Inicio</string>
+    <string name="Perfil">Perfil</string>
 </resources>

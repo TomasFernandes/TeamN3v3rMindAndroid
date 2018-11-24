@@ -15,8 +15,9 @@
     <string name="PostOnDataBase">Post</string>
     <string name="Streams">Streams</string>
     <string name="btn_Registar">Sign up</string>
-    <string name="merda">Merda</string>
     <string name="Feed">Feed</string>
+    <string name="Perfil">Perfil</string>
+    <string name="action_search" />
 
 
 </resources>

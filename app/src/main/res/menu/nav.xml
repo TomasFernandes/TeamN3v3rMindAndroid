@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Nav">
+    <item
+        android:id="@+id/action_search"
+        android:title="@string/action_search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
@@ -10,5 +17,10 @@
         android:id="@+id/action_feed"
         android:orderInCategory="100"
         android:title="@string/Feed"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_perfil"
+        android:orderInCategory="100"
+        android:title="@string/Perfil"
         app:showAsAction="never" />
 </menu>

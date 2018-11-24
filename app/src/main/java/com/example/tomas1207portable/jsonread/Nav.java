@@ -15,36 +15,47 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+
+
 public class Nav extends AppCompatActivity //principal
         implements NavigationView.OnNavigationItemSelectedListener {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
+
         sharedPreferences = getSharedPreferences("JsonShared",MODE_PRIVATE);//shared init
         editor = sharedPreferences.edit();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        deleteAllShared();//delete all shared if existed
-        MakeCall();// call the server
-       if(sharedPreferences.getBoolean("FirstTime",true) != false){
-        editor.putBoolean("FirstTime",false);
-        editor.apply();
-        startActivity(new Intent(this, Welcome.class));
-        }
 
         FloatingActionButton fab = findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) { //show bar in both of phone with info from API but need pass from sharedpreference Name:JsonRead key:inLive nomes dos streams
                 Snackbar.make(view, sharedPreferences.getString("InLive","Sao todos uns preguiçosos"), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();//show bar in both of phone with info from API but need pass from sharedpreference Name:JsonRead key:inLive nomes dos streams
-            }
+                        .setAction("Action", null).show();
+
+                }
         });
+
+        deleteAllShared();//delete all shared if existed
+        MakeCall();// call the server
+
+        if(sharedPreferences.getBoolean("FirstTime",true) != false){
+        editor.putBoolean("FirstTime",false);
+        editor.apply();
+        startActivity(new Intent(this, Welcome.class));
+        }
+
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -71,6 +82,7 @@ public class Nav extends AppCompatActivity //principal
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.nav, menu);
         return true;
+
     }
 
     @Override
@@ -96,7 +108,7 @@ public class Nav extends AppCompatActivity //principal
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-            //TODO:Change Mudar os nomes dos ids :P
+        //TODO:Change Mudar os nomes dos ids :P
         if (id == R.id.nav_camera) {
             startActivity(new Intent(Nav.this, Teste.class));
         } else if (id == R.id.nav_gallery) {
