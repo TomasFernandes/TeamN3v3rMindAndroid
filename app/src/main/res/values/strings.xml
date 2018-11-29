@@ -16,8 +16,13 @@
     <string name="Streams">Streams</string>
     <string name="btn_Registar">Sign up</string>
     <string name="Feed">Feed</string>
-    <string name="Perfil">Perfil</string>
-    <string name="action_search" />
+    <string name="Perfil">Profile</string>
+    <string name="action_search">Search</string>
+    <string name="menu_Feed">Feed</string>
+    <string name="menu_Defenicoes">Settings</string>
+    <string name="menu_moresettings">More Settings</string>
+    <string name="Welcome_password">Password</string>
+    <string name="Welcome_Nome">User</string>
 
 
 </resources>

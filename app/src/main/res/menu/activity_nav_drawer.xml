@@ -15,13 +15,13 @@
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Feed (proprio)" />
+            android:title="@string/menu_Feed" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Opções" />
+            android:title="@string/menu_Defenicoes" />
     </group>
-    <item android:title="Mais definições">
+    <item android:title="@string/menu_moresettings">
         <menu>
             <item
                 android:id="@+id/nav_share"
