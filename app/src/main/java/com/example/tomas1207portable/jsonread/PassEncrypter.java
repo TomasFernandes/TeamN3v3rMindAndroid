@@ -10,7 +10,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class PassEncrypter {
 
         private static final String ALGORITHM = "AES";
-        private static final String KEY = "1Hbfh667tomDEJ78";
+        private static final String KEY = "Hil39vcDGP610DCp";//Key of 16 char
 
         public static String encrypt(String value) throws Exception
         {
