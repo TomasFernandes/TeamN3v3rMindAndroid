@@ -1,5 +1,6 @@
 package com.example.tomas1207portable.jsonread;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -29,7 +30,7 @@ public class Teste extends AppCompatActivity { //streamers
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         new GetContactsMain(this).execute();
-        int sou;
+        final Context context = this;
         sharedPreferences = getSharedPreferences(nomeShared,MODE_PRIVATE);
         editor = getSharedPreferences(nomeShared,MODE_PRIVATE).edit();
 
@@ -50,7 +51,7 @@ public class Teste extends AppCompatActivity { //streamers
         bnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new postOnServer().execute();
+                new postOnServer(context).execute();
             }
         });
         editor.apply();
@@ -58,50 +59,5 @@ public class Teste extends AppCompatActivity { //streamers
 
 
 
-//TODO:Edit Fazer o remove desta class e por pelo GetContactsMain para aqui com sharedPref
-    private static class postOnServer extends AsyncTask<Void, Void, Void>{
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-
-            URL url;
-            try
-            {
-                url = new URL("http://www.tomasfernandes.pt/Rest/example/addalunos");
-                HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-                String urlParams = "nome=tomas&idade=25&turma=407&curso=DDM";
-                connection.setRequestMethod("POST");
-
-                connection.setDoOutput(true);
-                DataOutputStream dStream = new DataOutputStream(connection.getOutputStream());
-                dStream.writeBytes(urlParams);
-                dStream.flush();
-                dStream.close();
-
-                int respondeCode = connection.getResponseCode();
-
-            }
-            catch (ProtocolException e) {
-                e.printStackTrace();
-            }
-            catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-    }
 }
