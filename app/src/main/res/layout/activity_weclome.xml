@@ -17,6 +17,7 @@
         android:layout_marginBottom="28dp"
         android:background="@drawable/bnt1"
         android:text="@string/btn_Registar"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"

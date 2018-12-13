@@ -58,16 +58,15 @@ public class Welcome extends AppCompatActivity {
                 string_Welcome_Pass = pass.getText().toString();
 
                 if (string_Welcome_User.matches("")) {
-                    user.setError("cenas");
+                    user.setError("Falta o user");
                 } else {
                     if (string_Welcome_Pass.matches("")) {
-                        pass.setError("Mais Cenas");
+                        pass.setError("Falta a pass");
                     } else {
                         try {
-                            Suser = PassEncrypter.encrypt(user.getText().toString());
                             Spass = PassEncrypter.encrypt(pass.getText().toString());
                             new postUserPass().execute();
-                            Log.w("Server",""+responceCode);
+                            Log.w("Server", "" + responceCode);
                             startActivity(new Intent(Welcome.this, Nav.class));
 
                         } catch (Exception e) {
