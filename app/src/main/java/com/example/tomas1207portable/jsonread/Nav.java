@@ -67,8 +67,6 @@ public class Nav extends AppCompatActivity //principal
         MakeCall();// call the server
 
         if(sharedPreferences.getBoolean("FirstTime",true) != false){
-        editor.putBoolean("FirstTime",false);
-        editor.apply();
         startActivity(new Intent(this, Welcome.class));
         }
 

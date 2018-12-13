@@ -18,10 +18,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.security.Key;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 
 public class Welcome extends AppCompatActivity {
     private Button registar;
@@ -29,17 +25,16 @@ public class Welcome extends AppCompatActivity {
     static String Suser;
     static String Spass;
     static int responceCode;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences sharedPreferences = getSharedPreferences("JsonShared", MODE_PRIVATE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weclome);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        user = findViewById(R.id.editText2);
-        pass = findViewById(R.id.editText4);
-        editor.putBoolean("FirstTime", false);
-
+        editor = sharedPreferences.edit();
+        user = findViewById(R.id.editText);
+        pass = findViewById(R.id.editText2);
 
         try {
             Log.w("Pass", PassEncrypter.encrypt("Ola"));
@@ -63,6 +58,8 @@ public class Welcome extends AppCompatActivity {
                     if (string_Welcome_Pass.matches("")) {
                         pass.setError("Falta a pass");
                     } else {
+                        editor.putBoolean("FirstTime", false);
+                        editor.apply();
                         try {
                             Spass = PassEncrypter.encrypt(pass.getText().toString());
                             new postUserPass().execute();
