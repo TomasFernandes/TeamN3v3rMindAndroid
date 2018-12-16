@@ -31,17 +31,17 @@ public class Nav extends AppCompatActivity //principal
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
-//
-//        WebView webView;
-//        webView = findViewById(R.id.Twitch);
-//        URL url = null;
-//        try {
-//             url = new URL("https://twitch.tv/tomas1207");
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
-//
-//        webView.loadUrl(String.valueOf(url));
+
+        WebView webView;
+        webView = findViewById(R.id.Twitch);
+        URL url = null;
+        try {
+             url = new URL("https://twitch.tv/tomas1207");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        webView.loadUrl(String.valueOf(url));
 
 //TODO:Ver como fazer para ler a apagina da twicht na app
 
