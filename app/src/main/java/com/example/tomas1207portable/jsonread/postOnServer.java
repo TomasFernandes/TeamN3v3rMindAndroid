@@ -12,8 +12,19 @@ import java.net.URL;
 
 public class postOnServer extends AsyncTask<Void, Void, Void> {
     Context context;
-public postOnServer(Context context){
+    String Link,Dados;
+
+    /**
+     * 7
+     * @param context Context for he know here is runing
+     * @param link  Link to he know here go POST data
+     * @param dados Dados for he POST Data on link
+     * @return Code from server to se if he received.
+     */
+    public postOnServer(Context context,String link, String dados){
     this.context = context;
+    this.Link = link;
+    this.Dados = dados;
 }
     @Override
     protected void onPreExecute() {
@@ -31,9 +42,9 @@ public postOnServer(Context context){
         URL url;
         try
         {
-            url = new URL("http://www.tomasfernandes.pt/Rest/example/addalunos");
+            url = new URL("http://www.tomasfernandes.pt"+Link);
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-            String urlParams = "nome=tomas&idade=25&turma=407&curso=DDM";
+            String urlParams = Dados;
             connection.setRequestMethod("POST");
 
             connection.setDoOutput(true);
