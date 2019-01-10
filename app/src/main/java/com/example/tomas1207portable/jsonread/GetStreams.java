@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 
 
-public class GetContactsMain extends AsyncTask<Void, Void, Void> {
+public class GetStreams extends AsyncTask<Void, Void, Void> {
     private JSONObject Channel;//channel of json
     private Context context;
     private ArrayList<String> streamArray = new ArrayList<>();//streamer array
@@ -28,7 +28,7 @@ public class GetContactsMain extends AsyncTask<Void, Void, Void> {
     private SharedPreferences.Editor editor ;
     private String Display_Name;//string of display name
     private Boolean HaveData = false;//check if server is on
-    public GetContactsMain(Context context) {
+    public GetStreams(Context context) {
         this.context = context;
     }
 

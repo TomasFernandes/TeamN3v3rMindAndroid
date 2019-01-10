@@ -115,7 +115,7 @@ public class Nav extends AppCompatActivity //principal
         return super.onOptionsItemSelected(item);
     }
     private void MakeCall(){
-        new GetContactsMain(this).execute();//call class to get API context
+        new GetStreams(this).execute();//call class to get API context
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
