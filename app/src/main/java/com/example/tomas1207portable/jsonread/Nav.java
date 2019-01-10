@@ -143,7 +143,7 @@ public class Nav extends AppCompatActivity //principal
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_settings) {
-            startActivity(new Intent (Nav.this, Settings.class ));
+            startActivity(new Intent (Nav.this, Settings.class));
 
         } else if (id == R.id.nav_share) {
 
