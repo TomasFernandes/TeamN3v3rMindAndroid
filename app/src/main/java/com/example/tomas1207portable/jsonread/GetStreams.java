@@ -64,7 +64,6 @@ public class GetStreams extends AsyncTask<Void, Void, Void> {
                         Display_Name = Channel.getString("display_name");//get displayname property
                         Log.d("Json", "Json:" + stream);//write in log for developer
                         streamArray.add(Display_Name); // add to array: DisplayName
-
                         editor.putString("DisplayName", Display_Name);
                         editor.putString("InLive", streamArray.toString());
                         editor.putBoolean("DataFromServer",HaveData);
