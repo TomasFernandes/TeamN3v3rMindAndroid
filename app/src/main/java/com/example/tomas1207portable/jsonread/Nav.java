@@ -58,10 +58,12 @@ public class Nav extends AppCompatActivity //principal
 
         sharedPreferences = getSharedPreferences("JsonShared",MODE_PRIVATE);//shared init
         editor = sharedPreferences.edit();
-        formatNomeInLive = sharedPreferences.getString("InLive",null).replace("[","").replace("]","");
+        if(sharedPreferences.getString("InLive",null) != null) {
+            formatNomeInLive = sharedPreferences.getString("InLive", null).replace("[", "").replace("]","");
+            NomeInLive = formatNomeInLive.split(",");
+        }
 
 
-        NomeInLive = formatNomeInLive.split(",");
 
 
 

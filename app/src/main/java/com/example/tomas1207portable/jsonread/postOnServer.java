@@ -15,7 +15,7 @@ public class postOnServer extends AsyncTask<Void, Void, Void> {
     String Link,Dados;
 
     /**
-     * 7
+     *
      * @param context Context for he know here is runing
      * @param link  Link to he know here go POST data
      * @param dados Dados for he POST Data on link
