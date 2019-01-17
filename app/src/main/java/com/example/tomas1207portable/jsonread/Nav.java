@@ -30,6 +30,8 @@ public class Nav extends AppCompatActivity //principal
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     ListView streamList;
+    String formatNomeInLive;
+    String[] NomeInLive;
 
 
     @Override
@@ -53,13 +55,21 @@ public class Nav extends AppCompatActivity //principal
 
         MakeCall();// call the server
 
+
         sharedPreferences = getSharedPreferences("JsonShared",MODE_PRIVATE);//shared init
         editor = sharedPreferences.edit();
+        formatNomeInLive = sharedPreferences.getString("InLive",null).replace("[","").replace("]","");
+
+
+        NomeInLive = formatNomeInLive.split(",");
+
+
 
         streamList = (ListView) findViewById(R.id.StreamsList);
         customAdtpor adtpor = new customAdtpor();
+        if(NomeInLive != null){
         streamList.setAdapter(adtpor);
-
+        }
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -192,7 +202,7 @@ public class Nav extends AppCompatActivity //principal
             TextView StreamName = convertView.findViewById(R.id.StreamerName);
             TextView StreamLiveTitle = convertView.findViewById(R.id.StreamTitle);
             TextView StreamViews = convertView.findViewById(R.id.StreamLiveViews);
-            StreamName.setText(sharedPreferences.getString("InLive",null));
+            StreamName.setText(NomeInLive[position]);
 
 
             return convertView;
