@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryNight">#3f2470</color>
+    <color name="colorPrimaryDarkNight">#291655</color>
+    <color name="colorAccentNight">#accede</color>
+    <color name="colorFundoNight">#27232e</color>
+</resources>
