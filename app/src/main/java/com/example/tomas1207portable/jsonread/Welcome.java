@@ -65,7 +65,6 @@ public class Welcome extends AppCompatActivity {
                             new postUserPass().execute();
                             Log.w("Server", "" + responceCode);
                             startActivity(new Intent(Welcome.this, Nav.class));
-
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
