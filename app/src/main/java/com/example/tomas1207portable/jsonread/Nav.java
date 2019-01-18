@@ -155,6 +155,7 @@ public class Nav extends AppCompatActivity //principal
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
+            startActivity(new Intent(Nav.this,Feed.class));
 
         } else if (id == R.id.nav_settings) {
             startActivity(new Intent (Nav.this, Settings.class));
@@ -186,7 +187,8 @@ public class Nav extends AppCompatActivity //principal
 
         @Override
         public int getCount() {
-            return 50;
+
+            return NomeInLive.length;
         }
 
         @Override
