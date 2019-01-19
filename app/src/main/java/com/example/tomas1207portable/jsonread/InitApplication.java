@@ -1,21 +1,22 @@
 package com.example.tomas1207portable.jsonread;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 public class InitApplication extends Application {
     public static final String NIGHT_MODE = "NIGHT_MODE";
-    public boolean isNightModeEnabled = false;
-
+    private boolean isNightModeEnabled = false;
+    static SharedPreferences shared;
     private static InitApplication singleton = null;
 
-    public static InitApplication getInstance() {
+    public static InitApplication getInstance(Context context) {
 
         if(singleton == null)
         {
             singleton = new InitApplication();
         }
+        shared = context.getSharedPreferences("JsonShared",MODE_PRIVATE);
         return singleton;
     }
 
@@ -23,8 +24,7 @@ public class InitApplication extends Application {
     public void onCreate() {
         super.onCreate();
         singleton = this;
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        this.isNightModeEnabled = mPrefs.getBoolean(NIGHT_MODE, false);
+        this.isNightModeEnabled = shared.getBoolean(NIGHT_MODE, false);
     }
 
     public boolean isNightModeEnabled() {
@@ -34,8 +34,7 @@ public class InitApplication extends Application {
     public void setIsNightModeEnabled(boolean isNightModeEnabled) {
         this.isNightModeEnabled = isNightModeEnabled;
 
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = mPrefs.edit();
+        SharedPreferences.Editor editor = shared.edit();
         editor.putBoolean(NIGHT_MODE, isNightModeEnabled);
         editor.apply();
     }

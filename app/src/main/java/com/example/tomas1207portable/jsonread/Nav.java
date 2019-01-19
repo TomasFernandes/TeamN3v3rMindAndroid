@@ -16,14 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
 
 public class Nav extends AppCompatActivity //principal
@@ -33,7 +29,6 @@ public class Nav extends AppCompatActivity //principal
     ListView streamList;
     String formatNomeInLive;
     String[] NomeInLive;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +68,7 @@ public class Nav extends AppCompatActivity //principal
 
 
 
-        streamList = (ListView) findViewById(R.id.StreamsList);
+        streamList = findViewById(R.id.StreamsList);
         customAdtpor adtpor = new customAdtpor();
         if(NomeInLive != null){
         streamList.setAdapter(adtpor);
@@ -159,6 +154,7 @@ public class Nav extends AppCompatActivity //principal
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
+            startActivity(new Intent(Nav.this,Feed.class));
 
         } else if (id == R.id.nav_settings) {
             startActivity(new Intent (Nav.this, Settings.class));
@@ -190,7 +186,8 @@ public class Nav extends AppCompatActivity //principal
 
         @Override
         public int getCount() {
-            return 50;
+
+            return NomeInLive.length;
         }
 
         @Override
