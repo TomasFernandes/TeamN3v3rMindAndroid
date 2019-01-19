@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +32,11 @@ public class Welcome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences sharedPreferences = getSharedPreferences("JsonShared", MODE_PRIVATE);
         super.onCreate(savedInstanceState);
+        if (InitApplication.getInstance(Welcome.this).isNightModeEnabled()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
         setContentView(R.layout.activity_weclome);
         editor = sharedPreferences.edit();
         user = findViewById(R.id.editText);

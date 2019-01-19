@@ -34,11 +34,14 @@ public class Nav extends AppCompatActivity //principal
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        if (InitApplication.getInstance().isNightModeEnabled()) {
+        if (InitApplication.getInstance(Nav.this).isNightModeEnabled()) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+
         setContentView(R.layout.activity_nav);
 //
 //        WebView webView;
