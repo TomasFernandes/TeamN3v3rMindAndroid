@@ -3,6 +3,7 @@ package com.example.tomas1207portable.jsonread;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.net.MailTo;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -77,6 +78,11 @@ public class Settings extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, Nav.class));
+        super.onBackPressed();
+    }
 }
 
 

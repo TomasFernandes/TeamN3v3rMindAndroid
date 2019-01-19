@@ -34,7 +34,7 @@ public class Nav extends AppCompatActivity //principal
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        if (InitApplication.getInstance(Nav.this).isNightModeEnabled()) {
+        if (InitApplication.getInstance(this).isNightModeEnabled()) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
 

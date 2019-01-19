@@ -23,7 +23,7 @@ public class Teste extends AppCompatActivity { //streamers
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (InitApplication.getInstance(Teste.this).isNightModeEnabled()) {
+        if (InitApplication.getInstance(this).isNightModeEnabled()) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
