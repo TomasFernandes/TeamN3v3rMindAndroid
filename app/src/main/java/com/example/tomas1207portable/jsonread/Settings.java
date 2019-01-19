@@ -61,10 +61,9 @@ public class Settings extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
 
                     if (isChecked==true) {
-
+                        InitApplication.getInstance().setIsNightModeEnabled(true);
                         Intent intent = getIntent();
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        InitApplication.getInstance().setIsNightModeEnabled(true);
                         finish();
                         startActivity(intent);
 
