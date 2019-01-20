@@ -1,4 +1,4 @@
-package com.example.tomas1207portable.jsonread;
+package com.example.tomas1207portable.jsonread.Core;
 
 import android.app.Application;
 import android.content.Context;

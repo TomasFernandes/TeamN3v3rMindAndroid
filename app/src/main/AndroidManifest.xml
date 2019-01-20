@@ -15,8 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Teste" />
-        <activity android:name=".DataBaseController" />
+        <activity android:name=".Activity.Teste" />
+        <activity android:name=".Activity.DataBaseController" />
         <activity
             android:name=".Nav"
             android:label="@string/app_name"
@@ -27,9 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Welcome" />
-        <activity android:name=".Settings" />
-        <activity android:name=".Feed"></activity>
+        <activity android:name=".Activity.Welcome" />
+        <activity android:name=".Activity.Settings" />
+        <activity android:name=".Activity.Feed"></activity>
     </application>
 
 </manifest>

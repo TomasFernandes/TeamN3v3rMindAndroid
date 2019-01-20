@@ -1,4 +1,4 @@
-package com.example.tomas1207portable.jsonread;
+package com.example.tomas1207portable.jsonread.Core;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,12 +10,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 import java.util.ArrayList;
 
 

@@ -1,9 +1,8 @@
-package com.example.tomas1207portable.jsonread;
+package com.example.tomas1207portable.jsonread.Activity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.net.MailTo;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -12,6 +11,10 @@ import android.support.v7.app.AppCompatDelegate;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import com.example.tomas1207portable.jsonread.Core.InitApplication;
+import com.example.tomas1207portable.jsonread.Nav;
+import com.example.tomas1207portable.jsonread.R;
 
 public class Settings extends AppCompatActivity {
 

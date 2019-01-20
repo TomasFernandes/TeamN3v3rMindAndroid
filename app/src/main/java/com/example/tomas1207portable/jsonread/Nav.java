@@ -22,6 +22,13 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.tomas1207portable.jsonread.Activity.Feed;
+import com.example.tomas1207portable.jsonread.Activity.Settings;
+import com.example.tomas1207portable.jsonread.Activity.Teste;
+import com.example.tomas1207portable.jsonread.Activity.Welcome;
+import com.example.tomas1207portable.jsonread.Core.GetStreams;
+import com.example.tomas1207portable.jsonread.Core.InitApplication;
+
 
 public class Nav extends AppCompatActivity //principal
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -166,7 +173,7 @@ public class Nav extends AppCompatActivity //principal
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
-            startActivity(new Intent(Nav.this,Feed.class));
+            startActivity(new Intent(Nav.this, Feed.class));
 
         } else if (id == R.id.nav_settings) {
             startActivity(new Intent (Nav.this, Settings.class));

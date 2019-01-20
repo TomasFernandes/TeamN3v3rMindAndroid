@@ -1,4 +1,4 @@
-package com.example.tomas1207portable.jsonread;
+package com.example.tomas1207portable.jsonread.Activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,11 @@ import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.tomas1207portable.jsonread.Core.GetStreams;
+import com.example.tomas1207portable.jsonread.Core.InitApplication;
+import com.example.tomas1207portable.jsonread.Core.postOnServer;
+import com.example.tomas1207portable.jsonread.R;
 
 import java.util.ArrayList;
 
