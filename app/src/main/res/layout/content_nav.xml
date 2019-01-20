@@ -8,7 +8,10 @@
     tools:context=".Nav"
     tools:showIn="@layout/app_bar_nav">
 
-
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/SwipeUp">
     <ListView
         android:id="@+id/StreamsList"
         android:layout_width="0dp"
@@ -18,4 +21,5 @@
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 </android.support.constraint.ConstraintLayout>
