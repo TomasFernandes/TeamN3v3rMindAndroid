@@ -22,6 +22,7 @@ public class GetStreams extends AsyncTask<Void, Void, Void> {
     private SharedPreferences.Editor editor ;
     private String Display_Name;//string of display name
     private Boolean HaveData = false;//check if server is on
+    private String Logo;
     public GetStreams(Context context) {
         this.context = context;
     }
@@ -56,15 +57,15 @@ public class GetStreams extends AsyncTask<Void, Void, Void> {
                         JSONObject stream = c.getJSONObject("stream");//get stream object
                         Channel = stream.getJSONObject("channel");//get channel object
                         Display_Name = Channel.getString("display_name");//get displayname property
+                        Logo = Channel.getString("logo");
                         Log.d("Json", "Json:" + stream);//write in log for developer
                         streamArray.add(Display_Name); // add to array: DisplayName
                         editor.putString("DisplayName", Display_Name);
                         editor.putString("InLive", streamArray.toString());
+                        editor.putString("LogoURL",Logo);
                         editor.putBoolean("DataFromServer",HaveData);
                         editor.apply();
                     }else {
-                        editor.remove("DisplayName");
-                        editor.remove("InLive");
                     }
                 }
 

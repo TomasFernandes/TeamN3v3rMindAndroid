@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,6 +29,12 @@ import com.example.tomas1207portable.jsonread.Activity.Teste;
 import com.example.tomas1207portable.jsonread.Activity.Welcome;
 import com.example.tomas1207portable.jsonread.Core.GetStreams;
 import com.example.tomas1207portable.jsonread.Core.InitApplication;
+import com.squareup.picasso.Picasso;
+
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 
 public class Nav extends AppCompatActivity //principal
@@ -222,12 +229,16 @@ public class Nav extends AppCompatActivity //principal
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = getLayoutInflater().inflate(R.layout.customlistviewstreams,null);
-            ImageButton streamButton = convertView.findViewById(R.id.Bnt_StreamImage);
+            ImageView streamButton = convertView.findViewById(R.id.Bnt_StreamImage);
             TextView StreamName = convertView.findViewById(R.id.StreamerName);
             TextView StreamLiveTitle = convertView.findViewById(R.id.StreamTitle);
             TextView StreamViews = convertView.findViewById(R.id.StreamLiveViews);
+            String urlLogo =  sharedPreferences.getString("LogoURL",null);
             StreamName.setText(NomeInLive[position]);
 
+            if(urlLogo != null){
+            Picasso.get().load(urlLogo).into(streamButton);
+            }
 
             return convertView;
         }
