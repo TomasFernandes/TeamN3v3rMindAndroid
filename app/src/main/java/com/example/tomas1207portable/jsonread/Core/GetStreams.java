@@ -24,6 +24,9 @@ public class GetStreams extends AsyncTask<Void, Void, Void> {
     private Boolean HaveData = false;//check if server is on
     private ArrayList<String> Logo = new ArrayList<>();
     private String logoString;
+
+    private ArrayList<String> tituloStream = new ArrayList<>();
+    private ArrayList<Integer> Viewres = new ArrayList<>();
     public GetStreams(Context context) {
         this.context = context;
     }
@@ -59,6 +62,8 @@ public class GetStreams extends AsyncTask<Void, Void, Void> {
                         Channel = stream.getJSONObject("channel");//get channel object
                         Display_Name = Channel.getString("display_name");//get displayname property
                         logoString = Channel.getString("logo");
+                        tituloStream.add(Channel.getString("status"));
+
                         Logo.add(logoString);
                         Log.d("Json", "Json:" + stream);//write in log for developer
                         streamArray.add(Display_Name); // add to array: DisplayName
@@ -66,6 +71,8 @@ public class GetStreams extends AsyncTask<Void, Void, Void> {
                         editor.putString("InLive", streamArray.toString());
                         editor.putString("LogoURL",Logo.toString());
                         editor.putBoolean("DataFromServer",HaveData);
+                        editor.putString("TituloStream",tituloStream.toString());
+
                         editor.apply();
                     }else {
                     }
