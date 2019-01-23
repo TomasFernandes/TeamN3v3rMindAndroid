@@ -233,13 +233,17 @@ public class Nav extends AppCompatActivity //principal
             TextView StreamName = convertView.findViewById(R.id.StreamerName);
             TextView StreamLiveTitle = convertView.findViewById(R.id.StreamTitle);
             TextView StreamViews = convertView.findViewById(R.id.StreamLiveViews);
-            String urlLogo =  sharedPreferences.getString("LogoURL",null).replace("[", "").replace("]","");
+            String urlLogo =  sharedPreferences.getString("LogoURL",null).replace("[", "").replace("]","").replaceAll("\\s+","");
             String[] LogoFinal;
             LogoFinal = urlLogo.split(",");
             StreamName.setText(NomeInLive[position]);
-
+            String FormatTitulo = sharedPreferences.getString("TituloStream",null).replace("[","").replace("]","");
+            String[] TituloFinal = FormatTitulo.split(",");
+            StreamLiveTitle.setText(TituloFinal[position]);
+            String viewersFormat = sharedPreferences.getString("Viewers",null).replace("[","").replace("]","");
+            String[] viewers = viewersFormat.split(",");
+            StreamViews.setText(viewers[position]);
             if(urlLogo != null){
-
             Picasso.get().load(LogoFinal[position]).into(streamButton);
             }
 
