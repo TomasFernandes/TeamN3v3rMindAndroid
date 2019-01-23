@@ -240,6 +240,9 @@ public class Nav extends AppCompatActivity //principal
             String FormatTitulo = sharedPreferences.getString("TituloStream",null).replace("[","").replace("]","");
             String[] TituloFinal = FormatTitulo.split(",");
             StreamLiveTitle.setText(TituloFinal[position]);
+            String viewersFormat = sharedPreferences.getString("Viewers",null).replace("[","").replace("]","");
+            String[] viewers = viewersFormat.split(",");
+            StreamViews.setText(viewers[position]);
             if(urlLogo != null){
             Picasso.get().load(LogoFinal[position]).into(streamButton);
             }

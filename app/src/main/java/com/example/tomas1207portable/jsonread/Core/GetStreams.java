@@ -26,7 +26,7 @@ public class GetStreams extends AsyncTask<Void, Void, Void> {
     private String logoString;
 
     private ArrayList<String> tituloStream = new ArrayList<>();
-    private ArrayList<Integer> Viewres = new ArrayList<>();
+    private ArrayList<Integer> Viewres = new ArrayList<Integer>();
     public GetStreams(Context context) {
         this.context = context;
     }
@@ -63,7 +63,7 @@ public class GetStreams extends AsyncTask<Void, Void, Void> {
                         Display_Name = Channel.getString("display_name");//get displayname property
                         logoString = Channel.getString("logo");
                         tituloStream.add(Channel.getString("status"));
-
+                        Viewres.add(stream.getInt("viewers"));
                         Logo.add(logoString);
                         Log.d("Json", "Json:" + stream);//write in log for developer
                         streamArray.add(Display_Name); // add to array: DisplayName
@@ -72,6 +72,7 @@ public class GetStreams extends AsyncTask<Void, Void, Void> {
                         editor.putString("LogoURL",Logo.toString());
                         editor.putBoolean("DataFromServer",HaveData);
                         editor.putString("TituloStream",tituloStream.toString());
+                        editor.putString("Viewers",Viewres.toString());
 
                         editor.apply();
                     }else {
