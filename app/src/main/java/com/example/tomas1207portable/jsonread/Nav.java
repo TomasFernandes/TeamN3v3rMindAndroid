@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -49,7 +50,8 @@ public class Nav extends AppCompatActivity //principal
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        if (InitApplication.getInstance(this).isNightModeEnabled()) {
+        setContentView(R.layout.activity_nav);
+        if (InitApplication.getInstance(Nav.this).isNightModeEnabled()) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
 
@@ -57,7 +59,7 @@ public class Nav extends AppCompatActivity //principal
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
-        setContentView(R.layout.activity_nav);
+
 //
 //        WebView webView;
 //        webView = findViewById(R.id.Twitch);
