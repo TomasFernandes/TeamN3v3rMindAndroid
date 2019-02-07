@@ -33,6 +33,7 @@ import com.example.tomas1207portable.jsonread.Activity.Teste;
 import com.example.tomas1207portable.jsonread.Activity.Welcome;
 import com.example.tomas1207portable.jsonread.Core.GetStreams;
 import com.example.tomas1207portable.jsonread.Core.InitApplication;
+import com.example.tomas1207portable.jsonread.Core.NotifyMeWhenStreamOn;
 import com.squareup.picasso.Picasso;
 
 import java.net.MalformedURLException;
@@ -82,6 +83,7 @@ public class Nav extends AppCompatActivity //principal
 //TODO:Ver como fazer para ler a apagina da twicht na app
 
         MakeCall();// call the server
+        startService(new Intent(this, NotifyMeWhenStreamOn.class));
 
 
         sharedPreferences = getSharedPreferences("JsonShared",MODE_PRIVATE);//shared init
