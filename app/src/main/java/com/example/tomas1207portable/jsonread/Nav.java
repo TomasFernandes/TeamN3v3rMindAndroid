@@ -2,6 +2,7 @@ package com.example.tomas1207portable.jsonread;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +25,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tomas1207portable.jsonread.Activity.Feed;
 import com.example.tomas1207portable.jsonread.Activity.Settings;
@@ -36,6 +39,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 
 public class Nav extends AppCompatActivity //principal
@@ -45,12 +49,16 @@ public class Nav extends AppCompatActivity //principal
     ListView streamList;
     String formatNomeInLive;
     String[] NomeInLive;
+    GetStreams getStreams;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
+
+        getStreams = new GetStreams(this);
         if (InitApplication.getInstance(Nav.this).isNightModeEnabled()) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
@@ -58,7 +66,6 @@ public class Nav extends AppCompatActivity //principal
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-
 
 //
 //        WebView webView;
@@ -89,7 +96,14 @@ public class Nav extends AppCompatActivity //principal
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                MakeCall();
+
+
+                    new GetStreams(Nav.this).execute();
+
+              Log.w("Strems", getStreams.getStatus().toString());
+                while (getStreams.getStatus().toString() != "FINISHED"){
+                    swipeRefreshLayout.setRefreshing(true);
+                }
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -168,7 +182,13 @@ public class Nav extends AppCompatActivity //principal
         return super.onOptionsItemSelected(item);
     }
     private void MakeCall(){
-        new GetStreams(this).execute();//call class to get API context
+        try {
+           getStreams.execute().get();//call class to get API context
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

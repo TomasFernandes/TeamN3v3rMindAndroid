@@ -34,8 +34,6 @@ public class GetStreams extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        Toast.makeText(context, "Json Data is downloading", Toast.LENGTH_LONG).show();
-
     }
 
     @Override
@@ -92,6 +90,6 @@ public class GetStreams extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
-        Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show();
+
     }
 }
