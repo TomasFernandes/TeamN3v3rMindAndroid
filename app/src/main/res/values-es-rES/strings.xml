@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TeamN3v3rMind</string>
+    <string name="Loading">Cargar</string>
+    <string name="Post">Publicar</string>
+    <string name="download">Descargar</string>
+    <string name="DataBase">Base de datos</string>
+    <string name="title_activity_nay">Thomas\'s Team</string>
+    <string name="action_settings">Opciones</string>
+    <string name="title_activity_nav">Nav</string>
+    <string name="PostOnDataBase">Post</string>
+    <string name="Streams">Directos</string>
+    <string name="btn_Registar">Registrarse</string>
+    <string name="Feed">Incio</string>
+    <string name="Perfil">Perfil</string>
+    <string name="action_search">Buscar</string>
+    <string name="menu_Feed">Noticias</string>
+    <string name="menu_moresettings">Otras opciones</string>
+    <string name="Welcome_password">Contraseña</string>
+    <string name="Welcome_Nome">Usuario</string>
+    <string name="menu_Defenicoes">Opciones</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+</resources>

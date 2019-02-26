@@ -27,6 +27,8 @@ public class Feed extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
         setContentView(R.layout.activity_feed);
+
+
         final ListView listView =  findViewById(R.id.List1);
         final customAdtpor Custom = new customAdtpor();
         listView.setAdapter(Custom);

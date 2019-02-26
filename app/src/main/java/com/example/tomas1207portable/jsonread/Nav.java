@@ -2,10 +2,12 @@ package com.example.tomas1207portable.jsonread;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +25,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tomas1207portable.jsonread.Activity.Feed;
 import com.example.tomas1207portable.jsonread.Activity.Settings;
@@ -35,6 +39,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 
 public class Nav extends AppCompatActivity //principal
@@ -44,12 +49,17 @@ public class Nav extends AppCompatActivity //principal
     ListView streamList;
     String formatNomeInLive;
     String[] NomeInLive;
+    GetStreams getStreams;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        if (InitApplication.getInstance(this).isNightModeEnabled()) {
+        setContentView(R.layout.activity_nav);
+
+        getStreams = new GetStreams(this);
+        if (InitApplication.getInstance(Nav.this).isNightModeEnabled()) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
 
@@ -57,7 +67,6 @@ public class Nav extends AppCompatActivity //principal
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
-        setContentView(R.layout.activity_nav);
 //
 //        WebView webView;
 //        webView = findViewById(R.id.Twitch);
@@ -87,7 +96,14 @@ public class Nav extends AppCompatActivity //principal
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                MakeCall();
+
+
+                    new GetStreams(Nav.this).execute();
+
+              Log.w("Strems", getStreams.getStatus().toString());
+                while (getStreams.getStatus().toString() != "FINISHED"){
+                    swipeRefreshLayout.setRefreshing(true);
+                }
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -166,7 +182,13 @@ public class Nav extends AppCompatActivity //principal
         return super.onOptionsItemSelected(item);
     }
     private void MakeCall(){
-        new GetStreams(this).execute();//call class to get API context
+        try {
+           getStreams.execute().get();//call class to get API context
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -233,13 +255,17 @@ public class Nav extends AppCompatActivity //principal
             TextView StreamName = convertView.findViewById(R.id.StreamerName);
             TextView StreamLiveTitle = convertView.findViewById(R.id.StreamTitle);
             TextView StreamViews = convertView.findViewById(R.id.StreamLiveViews);
-            String urlLogo =  sharedPreferences.getString("LogoURL",null).replace("[", "").replace("]","");
+            String urlLogo =  sharedPreferences.getString("LogoURL",null).replace("[", "").replace("]","").replaceAll("\\s+","");
             String[] LogoFinal;
             LogoFinal = urlLogo.split(",");
             StreamName.setText(NomeInLive[position]);
-
+            String FormatTitulo = sharedPreferences.getString("TituloStream",null).replace("[","").replace("]","");
+            String[] TituloFinal = FormatTitulo.split(",");
+            StreamLiveTitle.setText(TituloFinal[position]);
+            String viewersFormat = sharedPreferences.getString("Viewers",null).replace("[","").replace("]","");
+            String[] viewers = viewersFormat.split(",");
+            StreamViews.setText(viewers[position]);
             if(urlLogo != null){
-
             Picasso.get().load(LogoFinal[position]).into(streamButton);
             }
 

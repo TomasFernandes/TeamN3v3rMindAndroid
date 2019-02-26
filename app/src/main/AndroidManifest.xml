@@ -28,8 +28,18 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.Welcome" />
-        <activity android:name=".Activity.Settings" />
-        <activity android:name=".Activity.Feed"></activity>
+        <activity android:name=".Activity.Settings"
+            android:parentActivityName="com.example.tomas1207portable.jsonread.Nav">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.tomas1207portable.jsonread.Nav" />
+        </activity>
+        <activity android:name=".Activity.Feed"
+            android:parentActivityName="com.example.tomas1207portable.jsonread.Nav">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tomas1207portable.jsonread.Nav"/>
+    </activity>
     </application>
 
 </manifest>
