@@ -14,7 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".Activity.Teste" />
         <activity android:name=".Activity.DataBaseController" />
         <activity
@@ -28,18 +27,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.Welcome" />
-        <activity android:name=".Activity.Settings"
-            android:parentActivityName="com.example.tomas1207portable.jsonread.Nav">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.example.tomas1207portable.jsonread.Nav" />
-        </activity>
-        <activity android:name=".Activity.Feed"
-            android:parentActivityName="com.example.tomas1207portable.jsonread.Nav">
+        <activity
+            android:name=".Activity.Settings"
+            android:parentActivityName=".Nav">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.tomas1207portable.jsonread.Nav"/>
-    </activity>
+                android:value="com.example.tomas1207portable.jsonread.Nav" />
+        </activity>
+        <activity
+            android:name=".Activity.Feed"
+            android:parentActivityName=".Nav">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tomas1207portable.jsonread.Nav" />
+        </activity>
     </application>
 
 </manifest>

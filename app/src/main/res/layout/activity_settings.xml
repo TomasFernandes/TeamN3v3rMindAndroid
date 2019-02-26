@@ -17,7 +17,7 @@
         android:layout_marginTop="8dp"
         android:padding="8dp"
         android:paddingBottom="32dp"
-        android:text="Não usar dados móveis"
+        android:text="Poupar dados móveis"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,19 +32,6 @@
         android:text="Modo oscuro"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:padding="8dp"
-        android:text="Conta"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
         android:id="@+id/textView5"
