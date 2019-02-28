@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -39,10 +40,6 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
 
-
-
-
-
         Switch dadosMoveis = findViewById(R.id.switch2);
         Switch modoOscuro = findViewById(R.id.switch1);
         modoOscuro.setChecked(isNight);
@@ -60,7 +57,7 @@ public class Settings extends AppCompatActivity {
 
                 if (isChecked == true && mWifi.isConnected() == false) {
                     wifiManager.setWifiEnabled(true);
-                    Toast.makeText(Settings.this, "Desativando auto-refresh", Toast.LENGTH_SHORT).show();
+
 
 
                 } else {
@@ -89,6 +86,8 @@ public class Settings extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
     @Override
